@@ -30,17 +30,30 @@ namespace cwatch
 {
       class Watch
       {
+           
 
 
-            static void Display()
+            const string Version = "cwatch 1.0.0.0"; 
+            
+
+            void Display()
             {
-
+                 
+                  Options(); 
             }
-            static void Options()
+            void Options()
             {
-                  Get.Clear(); 
+                  Get.Clear();
+                  QuickTools.Options.Label = Version; 
                   string[] optionList = { "Alarms", "Stopwatch", "Timer" };
                   var options = new Options(optionList);
+                  var timer = new Timer(); 
+                  
+                  
+
+
+
+
 
                   switch(options.Pick())
                   {
@@ -55,9 +68,9 @@ namespace cwatch
                               break;
 
                         case 2:
-                            //  Get.Alert("Not Set up yet ");
-                             // Options();
-
+                              //  Get.Alert("Not Set up yet ");
+                              // Options();
+                              timer.Set(); 
                               break; 
                   }
 
@@ -66,7 +79,9 @@ namespace cwatch
             }
             public static void Main(string[] args)
             {
-                  Display(); 
+                  Get.Title(Version);
+                  var app = new Watch(); 
+                  app.Display(); 
             }
       }
 }
