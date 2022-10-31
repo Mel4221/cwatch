@@ -26,7 +26,7 @@
 using System;
 using System.Threading; 
 using QuickTools; 
-namespace cwatch
+namespace Clock
 {
       class Watch
       {
@@ -70,7 +70,7 @@ namespace cwatch
                         case 2:
                               //  Get.Alert("Not Set up yet ");
                               // Options();
-                              timer.Set(); 
+                              timer.Display(); 
                               break; 
                   }
 

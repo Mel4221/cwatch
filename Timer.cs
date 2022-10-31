@@ -1,4 +1,6 @@
-using System; 
+using System;
+using QuickTools;
+using static QuickTools.Color; 
 using System.Threading; 
 
 namespace Clock
@@ -6,36 +8,55 @@ namespace Clock
     class Timer:RealTime
     {
             private int Goal = 0;
-            private int Current = 0; 
-            
-           
+            private int Current = 0;
+            private char[] Types = {'h','m','s' };
+            public char Type = 'x'; 
+
+
+
+            public void Display()
+            {
+                  Color.Yellow("Type time on the fallowing format: 1h , 1m , 1s , 10m 10s");
+                  if (Get.TextInput().IndexOf("s",StringComparison.Ordinal) > 0 )
+                  {
+                        Goal = int.Parse(Get.Text.Replace("s",""));
+                        Type = 's'; 
+                        Start(); 
+                  }
+            }
+
             private void Init()
             {
-                    while(true)
+                    while(Goal != Current)
                     {
-                        Current++; 
-                        Console.WriteLine(Current); 
+                        Get.Clear(); 
+                        Current++;
+                        Green($"Timer Running: {Current}{Type} Until: {Goal} {Type}");
+                        Get.WaitTime(Interval);
+
+                       
                     }
+                  Get.Green("Time is up!!! "+Goal+Type); 
             }
-        
-             Thread timer = null; 
+
+            Thread TimerHandeler = null;   
             public void Start()
             {
-               timer = new Thread(()=>{Init();});
-                if(timer.IsAlive == false)
+               TimerHandeler = new Thread(()=>{Init();});
+                if(TimerHandeler.IsAlive == false)
                 {
-                    timer.Start(); 
+                    TimerHandeler.Start(); 
                 }
-                    
-                string question = Console.ReadLine();
+
+                  string question = Get.TextInput("Press any key to exit");
                 
-                if(question == "out")
+                if(question == "")
                 {
-                    timer.Abort(); 
-                }else{
-                   Checker(); 
+                    TimerHandeler.Abort(); 
                 }
             }
+
+
      
         public void Checker()
         {
@@ -45,14 +66,17 @@ namespace Clock
                   string question = Console.ReadLine();
                   if(question == "out")
                   {
-                       timer.Abort(); 
+                       TimerHandeler.Abort(); 
                        condition = false; 
                   }
             }
         }
-    public Timer()
+
+
+
+      public Timer()
     {
-         throw new NotImplementedException();
+         //throw new NotImplementedException();
     }
     public Timer(int time)
     {
