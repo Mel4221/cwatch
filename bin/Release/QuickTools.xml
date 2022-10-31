@@ -35,6 +35,11 @@
             Options List container 
             </summary>
         </member>
+        <member name="M:QuickTools.Options.ClearOptions">
+            <summary>
+            Clears All the options.
+            </summary>
+        </member>
         <member name="M:QuickTools.Options.Display">
             <summary>
             Display the Options listed in the OptionsList 
@@ -90,6 +95,24 @@
             </summary>
             <param name="type">If set to <c>true</c> type.</param>
         </member>
+        <member name="M:QuickTools.Options.#ctor(System.String[],System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuickTools.Options"/> class.
+            </summary>
+            <param name="options">Options.</param>
+            <param name="typeOfOptions">Type of options.</param>
+        </member>
+        <member name="M:QuickTools.Options.Select">
+            <summary>
+            Select The Option from the OptionList.
+            </summary>
+            <returns>The select.</returns>
+        </member>
+        <member name="T:QuickTools.IRandom">
+            <summary>
+            This Class create random Passwords or Pin and the Passwords contains letters,symbols and numbers 
+            </summary>
+        </member>
         <member name="T:QuickTools.CreateRandom">
             <summary>
             This Class create random Passwords or Pin and the Passwords contains letters,symbols and numbers 
@@ -116,9 +139,24 @@
             </summary>
             <returns>The password.</returns>
         </member>
+        <member name="M:QuickTools.New.Password(System.Int32,System.Boolean)">
+            <summary>
+            Password the specified passwordLenght and noSpecialSimbols.
+            </summary>
+            <returns>The password.</returns>
+            <param name="passwordLenght">Password lenght.</param>
+            <param name="noSpecialSimbols">If set to <c>true</c> no special simbols.</param>
+        </member>
+        <member name="M:QuickTools.New.RandomText(System.Int32)">
+            <summary>
+            Generat Randoms text completly chunked together useful to create random passwords or anything that requires a long string of text.
+            </summary>
+            <returns>The text.</returns>
+            <param name="textLength">Text length.</param>
+        </member>
         <member name="M:QuickTools.New.Password(System.Int32)">
             <summary>
-            Generate a Password with the specified passwordLenght.
+            Password the specified passwordLenght.
             </summary>
             <returns>The password.</returns>
             <param name="passwordLenght">Password lenght.</param>
@@ -158,6 +196,47 @@
             <param name="arrayLength">Array length.</param>
             <param name="minimumRange">Minimum range.</param>
             <param name="maximumRange">Maximum range.</param>
+        </member>
+        <member name="M:QuickTools.New.RandomInt(System.Int32,System.Int32)">
+            <summary>
+            Create a random number based on the rules that are passed 
+            and retun it 
+            </summary>
+            <returns>int value</returns>
+            <param name="from">From.</param>
+            <param name="until">Until.</param>
+        </member>
+        <member name="M:QuickTools.New.RandomByte">
+            <summary>
+            it generate a random byte from 0 to 250
+            and it uses the Random.Next(min,max)
+            under it for it to work 
+            </summary>
+            <returns>Single Byte</returns>
+        </member>
+        <member name="F:QuickTools.New.KeyGenerated">
+            <summary>
+            This  hold the key of 16 bits already generated
+            by the RandomByteKey() generator 
+            </summary>
+        </member>
+        <member name="M:QuickTools.New.RandomByteKey">
+            <summary>
+            Randoms the byte key generate a random byte key 
+            that could be used for encrypting and it has a 16 bits length
+            </summary>
+            <returns>The byte key.</returns>
+        </member>
+        <member name="M:QuickTools.New.RandomByteKey(System.Boolean)">
+            <summary>
+            Randoms the byte key this works on the same way than RandomByteKey()
+            but if it is passed as argument true like RandomByteKey(true)
+            it will create a file and it will save it under the data/qt/secure.key
+            and on this version it DOES NOT ENCRYPT IT  so it has to be manually 
+            encrypted .
+            </summary>
+            <returns>byte[] array </returns>
+            <param name="autoSave">If set to <c>true</c> auto save.</param>
         </member>
         <member name="T:QuickTools.Color">
             <summary>
@@ -470,6 +549,12 @@
             </summary>
             <param name="sleepTime">Sleep time.</param>
         </member>
+        <member name="M:QuickTools.Get.CurrentPath">
+            <summary>
+            This method Returns the current path from the application
+            </summary>
+            <returns>Returns the current path</returns>
+        </member>
         <member name="F:QuickTools.Get.Path">
             <summary>
             Abstraction for Directory.GetCurrentDirectory(); 
@@ -486,38 +571,6 @@
             </summary>
             <returns>string path </returns>
         </member>
-        <member name="M:QuickTools.Get.RandomByte">
-            <summary>
-            it generate a random byte from 0 to 250
-            and it uses the Random.Next(min,max)
-            under it for it to work 
-            </summary>
-            <returns>Single Byte</returns>
-        </member>
-        <member name="F:QuickTools.Get.KeyGenerated">
-            <summary>
-            This  hold the key of 16 bits already generated
-            by the RandomByteKey() generator 
-            </summary>
-        </member>
-        <member name="M:QuickTools.Get.RandomByteKey">
-            <summary>
-            Randoms the byte key generate a random byte key 
-            that could be used for encrypting and it has a 16 bits length
-            </summary>
-            <returns>The byte key.</returns>
-        </member>
-        <member name="M:QuickTools.Get.RandomByteKey(System.Boolean)">
-            <summary>
-            Randoms the byte key this works on the same way than RandomByteKey()
-            but if it is passed as argument true like RandomByteKey(true)
-            it will create a file and it will save it under the data/qt/secure.key
-            and on this version it DOES NOT ENCRYPT IT  so it has to be manually 
-            encrypted .
-            </summary>
-            <returns>byte[] array </returns>
-            <param name="autoSave">If set to <c>true</c> auto save.</param>
-        </member>
         <member name="M:QuickTools.Get.SaveKey">
             <summary>
             This method can used manually
@@ -526,6 +579,26 @@
             and adding the parameter the bool true 
             for it to auto save the key 
             </summary>
+        </member>
+        <member name="M:QuickTools.Get.SaveKey(System.String)">
+            <summary>
+            Save the key Generated on the given path 
+            </summary>
+            <param name="pathToSaveTheKey">Path to save the key.</param>
+        </member>
+        <member name="M:QuickTools.Get.KeyBytesSaved">
+            <summary>
+            This Method gets the key bytes that were saved before by using the method 
+            before that was the method save key 
+            </summary>
+            <returns>The bytes saved.</returns>
+        </member>
+        <member name="M:QuickTools.Get.KeyBytesSaved(System.String)">
+            <summary>
+            Read the string bytes stored in a file 
+            </summary>
+            <returns>The bytes saved.</returns>
+            <param name="path">Path.</param>
         </member>
         <member name="M:QuickTools.Get.Check">
             <summary>
@@ -567,6 +640,13 @@
             on the same way it gets it , it also send it to the Key field
             </summary>
             <returns>object key pressed</returns>
+        </member>
+        <member name="M:QuickTools.Get.KeyChar">
+            <summary>
+            This method allows you to get the Character value 
+            and return it as anstring 
+            </summary>
+            <returns>The char.</returns>
         </member>
         <member name="M:QuickTools.Get.KeyNumber">
             <summary>
@@ -621,6 +701,13 @@
             Get the Number from the input introduced 
             </summary>
             <returns>The input.</returns>
+        </member>
+        <member name="M:QuickTools.Get.NumberInput(System.Boolean)">
+            <summary>
+            Get a number in put and returns a double 
+            </summary>
+            <returns>The input.</returns>
+            <param name="BigNumber">If set to <c>true</c> big number.</param>
         </member>
         <member name="M:QuickTools.Get.TextInput">
             <summary>
@@ -841,64 +928,6 @@
             Extention Of Get Due to Old Programs using this abstraction
             </summary>
         </member>
-        <member name="T:QuickTools.Encrypter">
-            <summary>
-             ************
-             *NOT STABLE*
-             ************
-             This class Allwo you to Encrypt Files 
-             And it has 1 method which takes 2 arguments
-             and write to the file the encrypted text 
-             </summary>
-        </member>
-        <member name="M:QuickTools.Encrypter.EncryptFile(System.String,System.Object)">
-            <summary>
-            Encrypts the file , and the first argument is the file
-            the second argument is the password to encrypt the file 
-            </summary>
-            <param name="fileToEncrypt">File to encrypt.</param>
-            <param name="FilePassword">File password.</param>
-        </member>
-        <member name="T:QuickTools.KeyReader">
-            <summary>
-            KeyReader is a class that Reads the keys stored in a file 
-            and save it into the KeyStored or into the StringKey
-            KeyStored = array byte[16]
-            StringKey = row string  
-            </summary>
-        </member>
-        <member name="F:QuickTools.KeyReader.KeyStored">
-            <summary>
-            Key Stored max keys stored is 16
-            </summary>
-        </member>
-        <member name="F:QuickTools.KeyReader.StringKey">
-            <summary>
-            Key stored on an string format 
-            </summary>
-        </member>
-        <member name="M:QuickTools.KeyReader.Parse(System.String)">
-            <summary>
-            Parse is a method that reads an entried file
-            and it returns the entired file as a row string
-            </summary>
-            <returns> The Content from the file</returns>
-            <param name="file">The file</param>
-        </member>
-        <member name="M:QuickTools.KeyReader.GetKey(System.String)">
-            <summary>
-            This Method get the keys stored in an array of strings 
-            
-            </summary>
-            <returns>The key.</returns>
-            <param name="OnlyText">File.</param>
-        </member>
-        <member name="M:QuickTools.KeyReader.#ctor(System.String)">
-            <summary>
-            This initialation start the process manually of reading the keys from the file 
-            </summary>
-            <param name="file">File that contains the keys</param>
-        </member>
         <member name="T:QuickTools.Decrypter">
             <summary>
             ************
@@ -928,42 +957,6 @@
             </summary>
             <param name="fileToDecrypt">File to decrypt.</param>
             <param name="FilePassword">File password.</param>
-        </member>
-        <member name="T:QuickTools.LowDecrypt">
-            <summary>
-            LowDecryptor is a class that sligly confuse the bytes of a file
-            and returns the string from the mixed file , is not super secure
-            becaus it does not use passwords in it but for small files works perfect
-            </summary>
-        </member>
-        <member name="F:QuickTools.LowDecrypt.RowData">
-            <summary>
-            Returns the decrypted text in a row string 
-            </summary>
-        </member>
-        <member name="M:QuickTools.LowDecrypt.DecryptFile(System.String)">
-            <summary>
-            Decrypts the file and return a string from it .
-            </summary>
-            <returns>The file.</returns>
-            <param name="fileData">File data.</param>
-        </member>
-        <member name="T:QuickTools.LowEncrypt">
-            <summary>
-            This file slighly encrypt a file by confusing the bytes in it and later on it write the file with  those confused files 
-            </summary>
-        </member>
-        <member name="F:QuickTools.LowEncrypt.RowData">
-            <summary>
-            RowData is a field that contains the data in a entried string 
-            </summary>
-        </member>
-        <member name="M:QuickTools.LowEncrypt.EncryptFile(System.String)">
-            <summary>
-            Encrypts the text that is passed as a string
-            </summary>
-            <returns>The file.</returns>
-            <param name="onlyText">text file or string text </param>
         </member>
         <member name="T:QuickTools.Reader">
             <summary>
@@ -1052,7 +1045,28 @@
             </summary>
             <param name="file">File.</param>
             <param name="data">Data.</param>
-            <param name="OverriteOrCreate">If set to <c>true</c> overrite or create.</param>
+            <param name="CanOverWrite">If set to <c>true</c> overrite or create.</param>
+        </member>
+        <member name="M:QuickTools.Writer.WriteArray(System.String,System.String[])">
+            <summary>
+            This method writes to a file an entired array of type string
+            </summary>
+            <param name="fileName">File name.</param>
+            <param name="array">Array.</param>
+        </member>
+        <member name="M:QuickTools.Writer.WriteArray(System.String,System.Int32[])">
+            <summary>
+            This method writes to a file an entired array of type int
+            </summary>
+            <param name="fileName">File name.</param>
+            <param name="array">Array.</param>
+        </member>
+        <member name="M:QuickTools.Writer.WriteArray(System.String,System.Byte[])">
+            <summary>
+            This method writes to a file an entired array of type byte
+            </summary>
+            <param name="fileName">File name.</param>
+            <param name="array">Array.</param>
         </member>
         <member name="M:QuickTools.Writer.CreateFile(System.String,System.Object)">
             <summary>
@@ -1063,8 +1077,9 @@
         </member>
         <member name="M:QuickTools.Writer.CreateFile(System.String)">
             <summary>
-            Creates the file.
+            Creates the file passed as an argument
             </summary>
+            <returns>The file.</returns>
             <param name="fileName">File name.</param>
         </member>
         <member name="M:QuickTools.Writer.Write(System.String,System.Object)">
@@ -1073,6 +1088,27 @@
             </summary>
             <param name="file">File.</param>
             <param name="data">Data.</param>
+        </member>
+        <member name="T:QuickTools.Binary">
+            <summary>
+            Binary Class Allows you to Handle Binary Data
+            </summary>
+        </member>
+        <member name="M:QuickTools.Binary.CopyBinaryFile(System.String,System.String)">
+            <summary>
+            Copies the binary file.
+            </summary>
+            <returns><c>true</c>, if binary file was copyed, <c>false</c> otherwise.</returns>
+            <param name="srcfilename">Srcfilename.</param>
+            <param name="destfilename">Destfilename.</param>
+        </member>
+        <member name="M:QuickTools.Binary.CopyTextFile(System.String,System.String)">
+            <summary>
+            Copies the text file.
+            </summary>
+            <returns><c>true</c>, if text file was copyed, <c>false</c> otherwise.</returns>
+            <param name="srcfilename">Srcfilename.</param>
+            <param name="destfilename">Destfilename.</param>
         </member>
         <member name="T:QuickTools.C">
             <summary>
@@ -1205,6 +1241,13 @@
             <param name="name">Name.</param>
             <param name="matter">Matter.</param>
         </member>
+        <member name="M:QuickTools.Log.Text(System.String,System.Object)">
+            <summary>
+            Log Text the specified matter on the file .
+            </summary>
+            <param name="nameOfThefile">Name of thefile.</param>
+            <param name="matter">Matter.</param>
+        </member>
         <member name="T:QuickTools.List">
             <summary>
             
@@ -1286,25 +1329,11 @@
             </summary>
             <returns>The data.</returns>
         </member>
-        <member name="T:QuickTools.Zip">
+        <member name="M:QuickTools.LoopInput.Lines">
             <summary>
-            ****EXPERIMENTAL****
-            Zip is a class that contaings some abstraction
-            from the IO.Compress.Zipfile that can compress
-            and decompress files.
+            This Return each lines of the Loop Input that was captured 
             </summary>
-        </member>
-        <member name="M:QuickTools.Zip.Compress(System.String)">
-            <summary>
-            Compress the specified file.
-            </summary>
-            <param name="file">File.</param>
-        </member>
-        <member name="M:QuickTools.Zip.Decompress(System.String)">
-            <summary>
-            Decompress the specified file.
-            </summary>
-            <param name="file">File.</param>
+            <returns>The lines.</returns>
         </member>
         <member name="T:QuickTools.Print">
             <summary>
@@ -1362,74 +1391,193 @@
             with all the arrow keys
             </summary>
         </member>
-        <member name="F:QuickTools.ArrowKey.Location">
+        <member name="F:QuickTools.ArrowKey.X">
+            <summary>
+            The x.
+            </summary>
+        </member>
+        <member name="F:QuickTools.ArrowKey.Y">
+            <summary>
+            The y.
+            </summary>
+        </member>
+        <member name="M:QuickTools.ArrowKey.Up">
             <summary>
             This fields has direct acces but as it returns an array 
             the method GetLocation  can provide the number only in an object type 
             </summary>
         </member>
-        <member name="M:QuickTools.ArrowKey.GetLocation">
+        <member name="M:QuickTools.ArrowKey.Capture(System.String)">
             <summary>
-            This method Returns the actual position from the 
-            Fields X and Y 
-            </summary>
-            <returns>The location.</returns>
-        </member>
-        <member name="M:QuickTools.ArrowKey.Move">
-            <summary>
-            This method is the one that is public to move the keys 
-            </summary>
-        </member>
-        <member name="M:QuickTools.ArrowKey.Move(System.String)">
-            <summary>
-            This does the same thing as the regular Move but you can spesified the  condition 
-            it has to be on type of string  remember that if your condition is a number it may not work 
-            sucessfully since the numbers from the keyboard is readed as 4D4 0r 9D9 so be carefull with that 
+            Capture the specified condition.
             </summary>
             <param name="condition">Condition.</param>
+        </member>
+        <member name="M:QuickTools.ArrowKey.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuickTools.ArrowKey"/> class.
+            </summary>
+        </member>
+        <member name="M:QuickTools.ArrowKey.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuickTools.ArrowKey"/> class.
+            </summary>
+            <param name="intitialX">Intitial x.</param>
+            <param name="initialY">Initial y.</param>
+        </member>
+        <member name="M:QuickTools.ArrowKey.#ctor(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuickTools.ArrowKey"/> class.
+            </summary>
+            <param name="intitialX">Intitial x.</param>
+            <param name="initialY">Initial y.</param>
+            <param name="SwitchUpDown">If set to <c>true</c> switch up down.</param>
         </member>
         <member name="T:QuickTools.Secure">
             <summary>
             Secure.
             </summary>
-        </member>
-        <member name="M:QuickTools.Secure.DecryptStringFromBytes_Aes(System.Byte[],System.Byte[],System.Byte[])">
             <summary>
-            Decrypts the string from bytes aes.
+            The secure class is a class that uses the Aes tecnology to encrypt data by using
+            a public key and a 
             </summary>
-            <returns>The string from bytes aes.</returns>
+        </member>
+        <member name="M:QuickTools.Secure.Decrypt(System.Byte[],System.Object,System.Byte[])">
+            <summary>
+            Decrypt the specified cipherText text  with a password.
+            and this is the AUTOMATIC way of doing it 
+            </summary>
+            <returns>The decrypt.</returns>
+            <param name="cipherText">Cipher text.</param>
+            <param name="password">Password.</param>
+            <param name="iv">Iv.</param>
+        </member>
+        <member name="M:QuickTools.Secure.Decrypt(System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            Decrypt the specified cipherText with password, Key and IV
+            This is the manual way of Decrypting the data , please remember if you used the
+            automatic way to  Encrypt it ,  you should use the automatic way 
+            </summary>
+            <returns>The decrypt.</returns>
             <param name="cipherText">Cipher text.</param>
             <param name="Key">Key.</param>
             <param name="IV">Iv.</param>
         </member>
-        <member name="M:QuickTools.Secure.EncryptStringToBytes_Aes(System.String,System.Byte[],System.Byte[])">
+        <member name="F:QuickTools.Secure.AllowToSaveKey">
             <summary>
-            Encrypts the string to bytes aes.
+            This allow the encriptor to either try to save the scure key or not  and is set to FALSE <see langword="false"/>  by default for security reasons
             </summary>
-            <returns>The string to bytes aes.</returns>
+        </member>
+        <member name="F:QuickTools.Secure.PublicKey">
+            <summary>
+            This will contain the public key used to encrypt the file 
+            be carefull it will stay on memory ONLY 
+            </summary>
+        </member>
+        <member name="F:QuickTools.Secure.RowPublicKey">
+            <summary>
+            This temporaly holds the public Key in an string format 
+            </summary>
+        </member>
+        <member name="M:QuickTools.Secure.Encrypt(System.String,System.Object)">
+            <summary>
+            Encrypt the specified plainText with the password given 
+            please remember that you will need the Pulic key to Decrypt the text
+            THIS IS THE AUTOMATIC WAY OF DOING IT . 
+            </summary>
+            <returns>The encrypt.</returns>
             <param name="plainText">Plain text.</param>
-            <param name="Key">Key.</param>
-            <param name="IV">Iv.</param>
+            <param name="password">Password.</param>
         </member>
-        <member name="T:QuickTools.Mask">
+        <member name="M:QuickTools.Secure.Encrypt">
             <summary>
-            LowDecryptor is a class that sligly confuse the bytes of a file
-            and returns the string from the mixed file , is not super secure
-            becaus it does not use passwords in it but for small files works perfect
+            This Encription Method is used when you initialize the class with 
+            the arguments  of text , key and iv  IF this is your first time using the class
+            please use the more simpler way 
+            </summary>
+            <returns>The encrypt.</returns>
+        </member>
+        <member name="M:QuickTools.Secure.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuickTools.Secure"/> class.
             </summary>
         </member>
-        <member name="F:QuickTools.Mask.RowData">
+        <member name="M:QuickTools.Secure.#ctor(System.Object,System.Byte[],System.Byte[])">
             <summary>
-            Returns the decrypted text in a row string 
+            This inizializtion gives you full controll of how to Encrypter the file 
+            </summary>
+            <param name="clearText">Clear text.</param>
+            <param name="key">Key.</param>
+            <param name="iv">Iv.</param>
+        </member>
+        <member name="T:QuickTools.Cache">
+            <summary>
+            This is a class that create xml files that can be used to save
+            simple information related with the program  and wants just a simple 
+            utility that can provide the settings features without having to add extra nugetpackages 
             </summary>
         </member>
-        <member name="M:QuickTools.Mask.Text(System.String,System.Int32)">
+        <member name="F:QuickTools.Cache.AtributeName">
             <summary>
-            Mask the file into a form that is harder to read , this is not Encryption
+            Name of the atribute that will be added 
             </summary>
-            <returns>The text.</returns>
-            <param name="fileData">File data.</param>
-            <param name="complexyty">Complexyty.</param>
+        </member>
+        <member name="F:QuickTools.Cache.FileValue">
+            <summary>
+            This set the value of the atribute
+            </summary>
+        </member>
+        <member name="M:QuickTools.Cache.DeleteItem">
+            <summary>
+            Deletes the item.
+            </summary>
+        </member>
+        <member name="M:QuickTools.Cache.AddItem(System.String,System.String)">
+            <summary>
+            Adds the item.
+            </summary>
+            <param name="tributeName">Tribute name.</param>
+            <param name="fileValue">File value.</param>
+        </member>
+        <member name="M:QuickTools.Cache.NewItem(System.String,System.String)">
+            <summary>
+            Add new  item.
+            </summary>
+            <param name="name">Name.</param>
+            <param name="value">Value.</param>
+        </member>
+        <member name="M:QuickTools.Cache.SaveItem(System.String,System.String)">
+            <summary>
+            Saves the item.
+            </summary>
+            <param name="atribute">Atribute.</param>
+            <param name="value">Value.</param>
+        </member>
+        <member name="M:QuickTools.Cache.GetItem(System.String)">
+            <summary>
+            Gets the item.
+            </summary>
+            <returns>The item.</returns>
+            <param name="atribute">Atribute.</param>
+        </member>
+        <member name="M:QuickTools.Cache.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuickTools.Cache"/> class.
+            </summary>
+        </member>
+        <member name="M:QuickTools.Cache.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuickTools.Cache"/> class.
+            </summary>
+            <param name="fileName">File name.</param>
+        </member>
+        <member name="M:QuickTools.Cache.#ctor(System.String,System.Object,System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuickTools.Cache"/> class.
+            </summary>
+            <param name="fileName">File name.</param>
+            <param name="atribute">Atribute.</param>
+            <param name="value">Value.</param>
         </member>
         <member name="T:MyRedactedNamespace.ProcessProtection">
             <summary>
@@ -1462,6 +1610,140 @@
             If already protected, will remove protection from the host process, so that it will no
             longer be a system-critical process and thus will be able to shut down safely.
             </summary>
+        </member>
+        <member name="T:Tester.Input">
+            <summary>
+            This handles an imput handler that execute a function while is reading input
+            </summary>
+        </member>
+        <member name="F:Tester.Input.Key">
+            <summary>
+            The key .
+            </summary>
+        </member>
+        <member name="F:Tester.Input.KeyChar">
+            <summary>
+            The key char.
+            </summary>
+        </member>
+        <member name="F:Tester.Input.InputList">
+            <summary>
+            The input list.
+            </summary>
+        </member>
+        <member name="M:Tester.Input.Read(System.Action)">
+            <summary>
+            Read this The Input letter by letter.
+            </summary>
+        </member>
+        <member name="M:Tester.Input.Read">
+            <summary>
+            Read this The Input letter by letter.
+            </summary>
+        </member>
+        <member name="M:Tester.Input.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tester.Input"/> class.
+            </summary>
+        </member>
+        <member name="M:Tester.Input.#ctor(System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tester.Input"/> class.
+            </summary>
+        </member>
+        <member name="T:Tester.PanelBody">
+            <summary>
+            Panel body.
+            </summary>
+        </member>
+        <member name="F:Tester.PanelBody.Name">
+            <summary>
+            The name.
+            </summary>
+        </member>
+        <member name="F:Tester.PanelBody.Text">
+            <summary>
+            The text.
+            </summary>
+        </member>
+        <member name="F:Tester.PanelBody.Index">
+            <summary>
+            The index.
+            </summary>
+        </member>
+        <member name="F:Tester.PanelBody.Length">
+            <summary>
+            The length.
+            </summary>
+        </member>
+        <member name="F:Tester.PanelBody.LocationX">
+            <summary>
+            The location x.
+            </summary>
+        </member>
+        <member name="F:Tester.PanelBody.LocationY">
+            <summary>
+            The location y.
+            </summary>
+        </member>
+        <member name="F:Tester.PanelBody.Color">
+            <summary>
+            The color.
+            </summary>
+        </member>
+        <member name="F:Tester.PanelBody.Y">
+            <summary>
+            The y.
+            </summary>
+        </member>
+        <member name="F:Tester.PanelBody.X">
+            <summary>
+            The x.
+            </summary>
+        </member>
+        <member name="M:Tester.PanelBody.Write(System.Object,System.Int32,System.Int32)">
+            <summary>
+            Write the specified value, x and y.
+            </summary>
+            <param name="value">Value.</param>
+            <param name="x">The x coordinate.</param>
+            <param name="y">The y coordinate.</param>
+        </member>
+        <member name="T:Tester.Panel">
+            <summary>
+            Panel.
+            </summary>
+        </member>
+        <member name="M:Tester.Panel.AddItem(System.String,System.String)">
+            <summary>
+            Adds the item.
+            </summary>
+            <param name="name">Name.</param>
+            <param name="text">Text.</param>
+        </member>
+        <member name="M:Tester.Panel.Display">
+            <summary>
+            Display this instance.
+            </summary>
+        </member>
+        <member name="M:Tester.Panel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tester.Panel"/> class.
+            </summary>
+        </member>
+        <member name="M:Tester.Panel.#ctor(System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tester.Panel"/> class.
+            </summary>
+            <param name="text">Text.</param>
+        </member>
+        <member name="M:Tester.Panel.#ctor(System.Object,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tester.Panel"/> class.
+            </summary>
+            <param name="text">Text.</param>
+            <param name="locationX">Location x.</param>
+            <param name="locationY">Location y.</param>
         </member>
     </members>
 </doc>

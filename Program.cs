@@ -81,7 +81,14 @@ namespace cwatch
             {
                   Get.Title(Version);
                   var app = new Watch(); 
-                  app.Display(); 
+                  app.Display();
+
+
+                  /*
+                         var timer = new Timer(60);
+            timer.Start(); 
+
+                  */
             }
       }
 }
